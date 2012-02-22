@@ -24,6 +24,7 @@ public class StartJSON {
    * JAXB-like annotation-based data (POJO) binding API. Look
    * <a href="http://wiki.fasterxml.com/JacksonInFiveMinutes">here</a>
    * for details.
+   *
    * @param args
    * @throws IOException
    * @throws JsonMappingException
