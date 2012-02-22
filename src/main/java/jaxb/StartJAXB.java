@@ -6,9 +6,15 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.util.JAXBSource;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.stream.StreamResult;
 
 import sample.SampleData;
-
 import data.EcoSystem;
 
 /**
@@ -20,7 +26,7 @@ import data.EcoSystem;
  */
 public class StartJAXB {
 
-  public static void main(String[] args) throws JAXBException {
+  public static void main(String[] args) throws JAXBException, TransformerFactoryConfigurationError, TransformerException {
     System.out.printf("Hello JAXB!%n%n");
 
     // Initialize
@@ -33,6 +39,16 @@ public class StartJAXB {
 
     // Print on screen
     m.marshal(sample, System.out);
+    System.out.printf("%n%n");
+
+    // Pretty-print on screen
+    final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+    final Transformer transformer = transformerFactory.newTransformer();
+    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+    final JAXBSource source = new JAXBSource(m, sample);
+    final StreamResult result = new StreamResult(System.out);
+    transformer.transform(source, result);
 
     // Serialize
     final File output1 = new File("sample.xml");
