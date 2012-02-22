@@ -1,0 +1,7 @@
+A simple example of JSON and JAXB usage.
+
+Object identity matters. The sample object graph contains object with multiple references to them (although no loops).
+
+JAXB can handle this using XmlID and XmlIDREF.
+Jackson JSON cannot (as of 1.9.4) and instead serializes a new copy for each reference to the same object.
+
