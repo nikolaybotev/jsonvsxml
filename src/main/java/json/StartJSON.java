@@ -44,6 +44,8 @@ public class StartJSON {
     // Print on screen
     System.out.println(mapper.writeValueAsString(sample));
     System.out.printf("%n%n");
+
+    // Pretty-print on screen
     System.out.println(w.writeValueAsString(sample));
 
     // Serialize
