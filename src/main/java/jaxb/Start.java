@@ -11,6 +11,13 @@ import sample.SampleData;
 
 import data.EcoSystem;
 
+/**
+ * An excellent JAXB tutorial is available at
+ * http://www.vogella.de/articles/JAXB/article.html
+ *
+ * @author Nikolay
+ *
+ */
 public class Start {
 
   public static void main(String[] args) throws JAXBException {
