@@ -21,14 +21,17 @@ import data.EcoSystem;
 public class StartJAXB {
 
   public static void main(String[] args) throws JAXBException {
-    System.out.println("Hello");
+    System.out.printf("Hello JAXB!%n%n");
 
-
+    // Initialize
     final JAXBContext context = JAXBContext.newInstance(EcoSystem.class);
     final Marshaller m = context.createMarshaller();
     final Unmarshaller u = context.createUnmarshaller();
 
+    // Create sample data
     final EcoSystem sample = SampleData.basicEcoSystem();
+
+    // Print on screen
     m.marshal(sample, System.out);
 
     // Serialize
@@ -37,8 +40,11 @@ public class StartJAXB {
 
     // Deserialize
     final EcoSystem unsample = (EcoSystem) u.unmarshal(output1);
+
+    // Serialize again
     m.marshal(unsample, new File("sample2.xml"));
 
+    System.out.printf("%nDone%n");
   }
 
 }
