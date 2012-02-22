@@ -17,7 +17,7 @@ public class EcoSystem {
   @XmlElement(name = "item")
   private final List<Item> items;
 
-  public EcoSystem() {
+  protected EcoSystem() {
     this(null, null);
   }
 

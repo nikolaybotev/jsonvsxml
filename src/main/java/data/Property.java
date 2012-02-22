@@ -10,7 +10,7 @@ public class Property {
   @XmlAttribute
   private final boolean required;
 
-  public Property() {
+  protected Property() {
     this(null, false);
   }
 

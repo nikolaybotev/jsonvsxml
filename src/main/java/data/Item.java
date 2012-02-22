@@ -20,7 +20,7 @@ public class Item {
   @XmlElement(name = "property")
   private final List<Property> properties;
 
-  public Item() {
+  protected Item() {
     this(null, null, null);
   }
 
