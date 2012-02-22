@@ -18,7 +18,7 @@ import data.EcoSystem;
  * @author Nikolay
  *
  */
-public class Start {
+public class StartJAXB {
 
   public static void main(String[] args) throws JAXBException {
     System.out.println("Hello");
