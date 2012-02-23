@@ -8,7 +8,9 @@ Object identity matters. The sample object graph contains object with multiple r
 
 JAXB can handle this using XmlID and XmlIDREF.
 
-Jackson JSON cannot (as of 1.9.4) and instead serializes a new copy for each reference to the same object.
+Jackson 1.x does not support object identity beyond the specific case of containment and instead serializes a new copy for each new reference to an existing object.
+
+Jackson 2.0 adds support for object identity handling ([doc](http://wiki.fasterxml.com/JacksonFeatureObjectIdentity)) via the [@JsonIdentityInfo](http://wiki.fasterxml.com/JacksonAnnotations) annotation, which can use either an internal object identifier or an explicit user-defined field.
 
 ## Final Fields
 
@@ -25,8 +27,8 @@ See an example of this approach [here](http://www.mail-archive.com/cxf-user@incu
 
 The first thing to consider when confronted with a map is if you can just do with a list of tuples directly in your class, eliminating the need for an adapter. KISS.
 
-Jackson supports mapping of maps to JSON. See an example [here](http://www.mail-archive.com/cxf-user@incubator.apache.org/msg04723.html)
+Jackson supports mapping of maps to JSON. See an example [here](http://www.mail-archive.com/cxf-user@incubator.apache.org/msg04723.html).
 
 ## Enums
 
-TODO
+Both JAXB and Jackson support automatic mapping of java enums and can customize the serialized values of enums via the [XmlEnumValue](http://docs.oracle.com/javase/6/docs/api/index.html?javax/xml/bind/annotation/XmlEnumValue.html) annotation.
