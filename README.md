@@ -4,7 +4,7 @@ A simple example of JSON and JAXB usage. The following areas of interest are cov
 
 ## Object Identity
 
-Object identity matters. The sample object graph contains object with multiple references to them (although no loops).
+Object identity matters. The sample object graph contains an object with more than one incoming reference (although no *directed* cycles).
 
 JAXB can handle this using XmlID and XmlIDREF.
 
