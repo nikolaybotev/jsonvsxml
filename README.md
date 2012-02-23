@@ -1,4 +1,4 @@
-# JSON vs JAXB
+# J(ack)SON vs JAXB
 
 A simple example of JSON and JAXB usage. The following areas of interest are covered.
 
