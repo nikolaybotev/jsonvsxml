@@ -31,4 +31,15 @@ Jackson supports mapping of maps to JSON. See an example [here](http://www.mail-
 
 ## Enums
 
-Both JAXB and Jackson support automatic mapping of java enums and can customize the serialized values of enums via the [XmlEnumValue](http://docs.oracle.com/javase/6/docs/api/index.html?javax/xml/bind/annotation/XmlEnumValue.html) annotation.
+Both JAXB and Jackson support automatic mapping of java enums and can customize the serialized values of enums via the
+[XmlEnumValue](http://docs.oracle.com/javase/6/docs/api/index.html?javax/xml/bind/annotation/XmlEnumValue.html) annotation.
+
+## Pretty-printing
+
+Both JAXB and Jackson produce one-liner documents by default, and both support pretty-printing in a simple indented format. 
+Jackson pretty-printing is very simple to configure; JAXB pretty-printing configuration is somewhat more involved 
+(relying on poorly documented features of the default back-end implementation) but possible.
+
+## Interoperability
+
+Jackson can recognize and use many of the JAXB [annotations](http://wiki.fasterxml.com/JacksonJAXBAnnotations). See json.StartJSONwithJAXB for an example.
