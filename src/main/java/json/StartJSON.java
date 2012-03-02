@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.IOException;
 
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.annotate.JsonMethod;
+import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectReader;
 import org.codehaus.jackson.map.ObjectWriter;
+import org.codehaus.jackson.map.SerializationConfig.Feature;
 
 import sample.SampleData;
 import data.EcoSystem;
@@ -35,6 +38,14 @@ public class StartJSON {
 
     // Initialize
     final ObjectMapper mapper = new ObjectMapper();
+
+    // Example mapper configuration options
+    mapper.setSerializationConfig(mapper.getSerializationConfig()
+        // Sort properties for consistent order in the JSON file
+        .with(Feature.SORT_PROPERTIES_ALPHABETICALLY)
+        // Include private fields when scanning for properties
+        .withVisibility(JsonMethod.FIELD, Visibility.ANY));
+
     final ObjectWriter w = mapper.writerWithDefaultPrettyPrinter();
     final ObjectReader r = mapper.reader(EcoSystem.class);
 
