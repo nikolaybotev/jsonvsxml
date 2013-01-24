@@ -3,13 +3,12 @@ package json;
 import java.io.File;
 import java.io.IOException;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.AnnotationIntrospector;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectReader;
-import org.codehaus.jackson.map.ObjectWriter;
-import org.codehaus.jackson.xc.JaxbAnnotationIntrospector;
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 
 import sample.SampleData;
 import data.EcoSystem;
@@ -32,23 +31,21 @@ public class StartJSONwithJAXB {
    * @throws JsonMappingException
    * @throws JsonGenerationException
    */
-  public static void main(String[] args) throws JsonGenerationException, JsonMappingException, IOException {
+  public static void main(String[] args) throws JsonMappingException, IOException {
     System.out.printf("Hello JSON!%n%n");
 
     // Initialize
     final ObjectMapper mapper = new ObjectMapper();
 
     // Register annotation introspector (JAXB only)
-    final AnnotationIntrospector introspector = new JaxbAnnotationIntrospector();
+    final AnnotationIntrospector introspector = new JaxbAnnotationIntrospector(mapper.getTypeFactory());
     // Alternative introspector that supports both Jackson and JAXB annotations
     //final AnnotationIntrospector primary = new JacksonAnnotationIntrospector();
     //final AnnotationIntrospector secondary = new JaxbAnnotationIntrospector();
     //final AnnotationIntrospector introspector = new AnnotationIntrospector.Pair(primary, secondary);
 
-    // make deserializer use JAXB annotations (only)
-    mapper.setDeserializationConfig(mapper.getDeserializationConfig().withAnnotationIntrospector(introspector));
-    // make serializer use JAXB annotations (only)
-    mapper.setSerializationConfig(mapper.getSerializationConfig().withAnnotationIntrospector(introspector));
+    // make deserializer and serializer use JAXB annotations (only)
+    mapper.setAnnotationIntrospector(introspector);
 
     final ObjectWriter w = mapper.writerWithDefaultPrettyPrinter();
     final ObjectReader r = mapper.reader(EcoSystem.class);

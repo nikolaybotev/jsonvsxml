@@ -1,5 +1,7 @@
 name := "jsonvsxml"
 
-libraryDependencies += "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.4"
+libraryDependencies += "com.fasterxml.jackson.core" % "jackson-databind" % "2.1.2"
 
-libraryDependencies += "org.codehaus.jackson" % "jackson-xc" % "1.9.4"
+libraryDependencies += "com.fasterxml.jackson.module" % "jackson-module-jaxb-annotations" % "2.1.2"
+
+EclipseKeys.withSource := true

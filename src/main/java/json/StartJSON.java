@@ -3,14 +3,13 @@ package json;
 import java.io.File;
 import java.io.IOException;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.annotate.JsonMethod;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectReader;
-import org.codehaus.jackson.map.ObjectWriter;
-import org.codehaus.jackson.map.SerializationConfig.Feature;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import sample.SampleData;
 import data.EcoSystem;
@@ -33,18 +32,17 @@ public class StartJSON {
    * @throws JsonMappingException
    * @throws JsonGenerationException
    */
-  public static void main(String[] args) throws JsonGenerationException, JsonMappingException, IOException {
+  public static void main(String[] args) throws JsonMappingException, IOException {
     System.out.printf("Hello JSON!%n%n");
 
     // Initialize
     final ObjectMapper mapper = new ObjectMapper();
 
     // Example mapper configuration options
-    mapper.setSerializationConfig(mapper.getSerializationConfig()
-        // Sort properties for consistent order in the JSON file
-        .with(Feature.SORT_PROPERTIES_ALPHABETICALLY)
-        // Include private fields when scanning for properties
-        .withVisibility(JsonMethod.FIELD, Visibility.ANY));
+    // Sort properties for consistent order in the JSON file
+    mapper.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+    // Include private fields when scanning for properties
+    mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 
     final ObjectWriter w = mapper.writerWithDefaultPrettyPrinter();
     final ObjectReader r = mapper.reader(EcoSystem.class);
